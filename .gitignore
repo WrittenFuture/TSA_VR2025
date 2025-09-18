@@ -1,0 +1,24 @@
+# Build products
+Binaries/
+Build/
+DerivedDataCache/
+Intermediate/
+Saved/
+.vs/
+.vscode/
+
+# User-specific
+*.suo
+*.user
+*.userprefs
+*.opensdf
+*.sdf
+*.VC.db
+*.VC.opendb
+
+# Logs and crash dumps
+*.log
+*.dmp
+
+# Packaged builds
+Packaged/
