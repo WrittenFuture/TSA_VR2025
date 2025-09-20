@@ -23,6 +23,8 @@ void ACostum_VR_Pawn::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	UE_LOG(LogTemp, Warning, TEXT("Hello from Pawn"));
+
 }
 
 // Called to bind functionality to input
