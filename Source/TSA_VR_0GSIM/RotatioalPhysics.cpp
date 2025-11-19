@@ -1,5 +1,6 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
+#include "EngineUtils.h"    // for TActorIterator
 
 #include "RotatioalPhysics.h"
 
@@ -13,22 +14,42 @@ URotatioalPhysics::URotatioalPhysics()
 	// ...
 }
 
-
 // Called when the game starts
 void URotatioalPhysics::BeginPlay()
 {
 	Super::BeginPlay();
 
-	// ...
-	
+	TorusSystem = nullptr;
+
+
+	for (TActorIterator<ATorusSystem> It(GetWorld()); It; ++It)
+	{
+		TorusSystem = *It;
+		break; // only one, so stop immediately
+	}
+
+	if (TorusSystem)
+	{
+		ActorsToSimulate = TorusSystem->GetActorsInField();
+	}
+	else
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Failed to assign TorusSystem in aactor"));
+	}
 }
 
-
 // Called every frame
-void URotatioalPhysics::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
+void URotatioalPhysics::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction *ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
-	// ...
-}
+	for (AActor* Actor : ActorsToSimulate)
+	{
+		if (Actor == GetOwner()){
+			UE_LOG(LogTemp, Warning, TEXT("Hi yes me i am simulated"));
+			return;
+		}
+	}
 
+	UE_LOG(LogTemp, Warning, TEXT("Failed to assign Actor"));
+}

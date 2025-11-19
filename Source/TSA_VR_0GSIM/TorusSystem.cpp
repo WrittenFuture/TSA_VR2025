@@ -88,9 +88,29 @@ void ATorusSystem::Tick(float DeltaTime)
 	}
 
 	ActorsInField = OverlappingActors;
+
+	if (PhysicsItterator % 60 == 0)
+	{
+		int Itterator = 0;
+
+		for (AActor *Actor : GetActorsInField())
+		{
+			UStaticMeshComponent *Mesh = Cast<UStaticMeshComponent>(Actor->GetComponentByClass(UStaticMeshComponent::StaticClass()));
+
+			if (Mesh && Mesh->IsSimulatingPhysics())
+			{
+				Mesh->AddForce(CalcVector(Itterator));
+				UE_LOG(LogTemp, Warning, TEXT("Added force"))
+			}
+			UE_LOG(LogTemp, Warning, TEXT("Cycled one ActorInField"))
+			Itterator++;
+		}
+	}
+
+	PhysicsItterator++;
 }
 
-TArray<AActor*> ATorusSystem::GetActorsInField()
+TArray<AActor *> ATorusSystem::GetActorsInField()
 {
 	return ActorsInField;
 }
@@ -105,4 +125,9 @@ TArray<FVector> ATorusSystem::GetDistances()
 	}
 
 	return ActorsDistanceFromCenter;
+}
+
+FVector ATorusSystem::CalcVector(int Index)
+{
+	return GetDistances()[Index] * 2;
 }

@@ -31,6 +31,11 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Gravity Field Physics")
 	TArray<FVector> ActorsDistanceFromCenter;
 
+	UPROPERTY()
+	int PhysicsItterator;
+
+	FVector CalcVector(int Index);
+
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
