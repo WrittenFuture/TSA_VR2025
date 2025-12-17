@@ -89,7 +89,7 @@ void ATorusSystem::Tick(float DeltaTime)
 
 	ActorsInField = OverlappingActors;
 
-	if (PhysicsItterator % 60 == 0)
+	if (PhysicsItterator % 15 == 0)
 	{
 		int Itterator = 0;
 
@@ -129,5 +129,5 @@ TArray<FVector> ATorusSystem::GetDistances()
 
 FVector ATorusSystem::CalcVector(int Index)
 {
-	return GetDistances()[Index] * 2;
+	return GetDistances()[Index] * 9.8;
 }
