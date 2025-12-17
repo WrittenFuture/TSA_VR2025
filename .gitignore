@@ -60,3 +60,14 @@ Saved/
 
 # Uncomment this if you want to ignore the Launcher .gitattributes file
 # !.gitattributes
+
+# Unreal generated folders
+Binaries/
+DerivedDataCache/
+Intermediate/
+Saved/
+
+# Visual Studio / IDE
+.vs/
+*.VC.db
+*.VC.opendb
