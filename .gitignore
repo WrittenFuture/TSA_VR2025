@@ -1,24 +1,62 @@
-# Build products
-Binaries/
-Build/
-DerivedDataCache/
-Intermediate/
-Saved/
+# Visual Studio 2015 user specific files
 .vs/
 .vscode/
 
-# User-specific
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.pdb
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+
+# Executables
+*.exe
+*.out
+*.app
+*.ipa
+
+# Project files
+*.xcodeproj
+*.xcworkspace
+*.sln
 *.suo
-*.user
-*.userprefs
 *.opensdf
 *.sdf
 *.VC.db
 *.VC.opendb
 
-# Logs and crash dumps
-*.log
-*.dmp
+# Built-in Unreal Engine folders
+# Directories created by the build system, should be ignored
+Build/
+Binaries/
+DerivedDataCache/
+Intermediate/
+Saved/
 
-# Packaged builds
-Packaged/
+# Misc
+*.VC.db
+*.VC.opendb
+*.opensdf
+*.sdf
+*.tmp
+*.log
+
+# Mobile provision/cert files
+*.mobileprovision
+*.cer
+
+# Uncomment this if you want to ignore the Launcher .gitattributes file
+# !.gitattributes
