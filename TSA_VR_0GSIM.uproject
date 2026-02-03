@@ -1,6 +1,6 @@
 {
 	"FileVersion": 3,
-	"EngineAssociation": "5.6",
+	"EngineAssociation": "5.6.1",
 	"Category": "",
 	"Description": "",
 	"Modules": [
@@ -41,6 +41,14 @@
 				"Win64",
 				"Linux",
 				"LinuxArm64",
+				"Android"
+			]
+		},
+		{
+			"Name": "OpenXRMsftHandInteraction",
+			"Enabled": true,
+			"SupportedTargetPlatforms": [
+				"Win64",
 				"Android"
 			]
 		}

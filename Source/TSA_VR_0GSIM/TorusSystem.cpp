@@ -80,7 +80,7 @@ void ATorusSystem::Tick(float DeltaTime)
 	TArray<AActor *> OverlappingActors;
 	GravField->GetOverlappingActors(OverlappingActors);
 
-	UE_LOG(LogTemp, Warning, TEXT("Overlapping count: %d"), OverlappingActors.Num());
+	//UE_LOG(LogTemp, Warning, TEXT("Overlapping count: %d"), OverlappingActors.Num());
 
 	for (AActor *Actor : OverlappingActors)
 	{
@@ -125,6 +125,16 @@ TArray<FVector> ATorusSystem::GetDistances()
 	}
 
 	return ActorsDistanceFromCenter;
+}
+
+float GetAngularVelocit()
+{
+	return 0.0;
+}
+
+void SetAngularVelocity(float NewAVelocity)
+{
+
 }
 
 FVector ATorusSystem::CalcVector(int Index)

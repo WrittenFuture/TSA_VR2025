@@ -23,7 +23,7 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	TArray<AActor *> ActorsToSimulate;
 
-	UPROPERTY()
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	ATorusSystem *TorusSystem = nullptr;
 
 public:

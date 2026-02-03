@@ -19,23 +19,21 @@ void URotatioalPhysics::BeginPlay()
 {
 	Super::BeginPlay();
 
-	TorusSystem = nullptr;
-
-
 	for (TActorIterator<ATorusSystem> It(GetWorld()); It; ++It)
 	{
 		TorusSystem = *It;
 		break; // only one, so stop immediately
 	}
 
-	if (TorusSystem)
+	if (TorusSystem != nullptr)
 	{
-		ActorsToSimulate = TorusSystem->GetActorsInField();
+		UE_LOG(LogTemp, Log, TEXT("TorusSystem assigned"));
 	}
 	else
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Failed to assign TorusSystem in aactor"));
+		UE_LOG(LogTemp, Log, TEXT("Torus system null"))
 	}
+
 }
 
 // Called every frame
@@ -43,13 +41,26 @@ void URotatioalPhysics::TickComponent(float DeltaTime, ELevelTick TickType, FAct
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
-	for (AActor* Actor : ActorsToSimulate)
+
+	if (TorusSystem)
 	{
-		if (Actor == GetOwner()){
-			UE_LOG(LogTemp, Warning, TEXT("Hi yes me i am simulated"));
-			return;
+		ActorsToSimulate = TorusSystem->GetActorsInField();
+
+		for (AActor* Actor : TorusSystem->GetActorsInField())
+		{
+			//UE_LOG(LogTemp, Log, TEXT("Item in GETACTORSINSOEIJAOJDFLSKj"));
 		}
+		UE_LOG(LogTemp, Log, TEXT("Got ActorsInField"));
+	}
+	else
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Failed to assign TorusSystem in aactor"));
 	}
 
-	UE_LOG(LogTemp, Warning, TEXT("Failed to assign Actor"));
+	for (AActor* Actor : ActorsToSimulate)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Hi yes me i am simulated"));
+	}
+
+	//UE_LOG(LogTemp, Warning, TEXT("Failed to assign Actor"));
 }

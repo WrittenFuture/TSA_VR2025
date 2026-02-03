@@ -72,7 +72,7 @@ void ACostum_VR_Pawn::Tick(float DeltaTime)
 
 	if (LHandVelocity.Size() > FVector(0,0,2).Size())
 	{
-		UE_LOG(LogTemp, Log, TEXT("Velocity L: %s"), *LHandVelocity.ToString());
+		//UE_LOG(LogTemp, Log, TEXT("Velocity L: %s"), *LHandVelocity.ToString());
 	}
 	
 	LHandLastPosition = LHandCurrentPosition;

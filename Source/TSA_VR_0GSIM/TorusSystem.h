@@ -42,5 +42,9 @@ public:
 
 	TArray<AActor*> GetActorsInField();
 	TArray<FVector> GetDistances();
+	float GetAngularVelocit();
+	void SetAngularVelocity(float NewAVelocity);
+
+	
 
 };
