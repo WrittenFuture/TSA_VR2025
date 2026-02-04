@@ -127,12 +127,27 @@ TArray<FVector> ATorusSystem::GetDistances()
 	return ActorsDistanceFromCenter;
 }
 
-float GetAngularVelocit()
+float ATorusSystem::GetAngularVelocit()
 {
 	return 0.0;
 }
 
-void SetAngularVelocity(float NewAVelocity)
+TArray<FRotator> ATorusSystem::GetOrientation()
+{
+	TArray<FRotator> Orientations;
+    
+    TArray<FVector> Distances = GetDistances();
+
+    for (FVector Position : Distances)
+    {
+        FRotator Rot = Position.GetSafeNormal().Rotation(); // vector from center to actor -> rotation
+        Orientations.Add(Rot);
+    }
+
+    return Orientations;
+}
+
+void ATorusSystem::SetAngularVelocity(float NewAVelocity)
 {
 
 }

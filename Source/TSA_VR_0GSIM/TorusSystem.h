@@ -40,9 +40,19 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	UFUNCTION(BlueprintCallable)
 	TArray<AActor*> GetActorsInField();
+
+	UFUNCTION(BlueprintCallable)
 	TArray<FVector> GetDistances();
+
+	UFUNCTION(BlueprintCallable)
 	float GetAngularVelocit();
+
+	UFUNCTION(BlueprintCallable)
+	TArray<FRotator> GetOrientation();
+
+	UFUNCTION(BlueprintCallable)
 	void SetAngularVelocity(float NewAVelocity);
 
 	
