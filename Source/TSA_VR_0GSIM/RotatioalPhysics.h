@@ -26,6 +26,21 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	ATorusSystem *TorusSystem = nullptr;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	AActor *MainActor;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UStaticMeshComponent *MainMesh;
+
+	UPROPERTY()
+	float LastAngleOfActor;
+
+	UPROPERTY(VisibleAnywhere)
+	FVector GravityActing;
+	
+	UPROPERTY(VisibleAnywhere)
+	float GravMag;
+
 public:
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction *ThisTickFunction) override;

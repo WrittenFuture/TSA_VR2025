@@ -6,6 +6,7 @@
 #include "GameFramework/Actor.h"
 #include "TorusSystem.generated.h"
 
+
 UCLASS()
 class TSA_VR_0GSIM_API ATorusSystem : public AActor
 {
@@ -34,6 +35,9 @@ protected:
 	UPROPERTY()
 	int PhysicsItterator;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Speeds")
+	float AngularVelocity;
+
 	FVector CalcVector(int Index);
 
 public:	
@@ -47,7 +51,7 @@ public:
 	TArray<FVector> GetDistances();
 
 	UFUNCTION(BlueprintCallable)
-	float GetAngularVelocit();
+	float GetAngularVelocity();
 
 	UFUNCTION(BlueprintCallable)
 	TArray<FRotator> GetOrientation();
@@ -55,6 +59,11 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void SetAngularVelocity(float NewAVelocity);
 
+	UFUNCTION(BlueprintCallable)
+	FVector GetGravityAtLocation(FVector Location);
+
+	UFUNCTION(BlueprintCallable)
+	FVector GetGravityAtLocationMoving(FVector Location, float AdditionAngularVelocity);
 	
 
 };

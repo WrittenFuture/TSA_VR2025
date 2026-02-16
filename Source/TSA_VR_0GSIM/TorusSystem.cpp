@@ -1,5 +1,6 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
+#include "EngineUtils.h"
 #include "TorusSystem.h"
 
 // Sets default values
@@ -58,6 +59,8 @@ void ATorusSystem::BeginPlay()
 	UE_LOG(LogTemp, Warning, TEXT("GravField overlap? %s, collision: %d"),
 		   GravField->GetGenerateOverlapEvents() ? TEXT("true") : TEXT("false"),
 		   (int32)GravField->GetCollisionEnabled());
+
+	SetAngularVelocity(0.718);
 }
 
 // Called every frame
@@ -99,8 +102,8 @@ void ATorusSystem::Tick(float DeltaTime)
 
 			if (Mesh && Mesh->IsSimulatingPhysics())
 			{
-				Mesh->AddForce(CalcVector(Itterator));
-				UE_LOG(LogTemp, Warning, TEXT("Added force"))
+				//Mesh->AddForce(CalcVector(Itterator));
+				UE_LOG(LogTemp, Warning, TEXT("Added force *or would have TorusSystem.cpp line 104 commebnted out*"))
 			}
 			UE_LOG(LogTemp, Warning, TEXT("Cycled one ActorInField"))
 			Itterator++;
@@ -127,9 +130,9 @@ TArray<FVector> ATorusSystem::GetDistances()
 	return ActorsDistanceFromCenter;
 }
 
-float ATorusSystem::GetAngularVelocit()
+float ATorusSystem::GetAngularVelocity()
 {
-	return 0.0;
+	return AngularVelocity;
 }
 
 TArray<FRotator> ATorusSystem::GetOrientation()
@@ -148,11 +151,43 @@ TArray<FRotator> ATorusSystem::GetOrientation()
 }
 
 void ATorusSystem::SetAngularVelocity(float NewAVelocity)
-{
-
+{	
+	AngularVelocity = NewAVelocity;
 }
 
 FVector ATorusSystem::CalcVector(int Index)
 {
 	return GetDistances()[Index] * 9.8;
+}
+
+
+FVector ATorusSystem::GetGravityAtLocation(FVector Location)
+{
+	float AngularSquared = AngularVelocity * AngularVelocity;
+	UE_LOG(LogTemp, Log, TEXT("Angular Velocity: %.2f"), AngularVelocity);
+
+	FVector Gravity = FVector(
+		AngularSquared * Location.X,
+		AngularSquared * Location.Y,
+		AngularSquared * Location.Z
+	);
+
+	return Gravity;
+	
+}
+
+FVector ATorusSystem::GetGravityAtLocationMoving(FVector Location, float AdditionAngularVelocity)
+{
+	float TotalAngularVelocity = AngularVelocity + AdditionAngularVelocity;
+	float AngularSquared = TotalAngularVelocity * TotalAngularVelocity;
+	UE_LOG(LogTemp, Log, TEXT("Angular Velocity: %.2f"), AngularVelocity);
+
+	FVector Gravity = FVector(
+		AngularSquared * Location.X,
+		AngularSquared * Location.Y,
+		AngularSquared * Location.Z
+	);
+
+	return Gravity;
+	
 }
