@@ -4,18 +4,16 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "TorusSystem.h"
-#include "EngineUtils.h" 
-#include "AngularVelocityController.generated.h"
+#include "PlantBag.generated.h"
 
 UCLASS()
-class TSA_VR_0GSIM_API AAngularVelocityController : public AActor
+class TSA_VR_0GSIM_API APlantBag : public AActor
 {
 	GENERATED_BODY()
 	
 public:	
 	// Sets default values for this actor's properties
-	AAngularVelocityController();
+	APlantBag();
 
 protected:
 	// Called when the game starts or when spawned
@@ -25,9 +23,4 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	ATorusSystem *TorusSystem = nullptr;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	float AngularVelocity;
 };
